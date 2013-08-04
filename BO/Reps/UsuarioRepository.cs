@@ -18,6 +18,10 @@ namespace BO.Reps
         {
             return db.Usuarios.FirstOrDefault(x => x.Id == id);
         }
-		
+
+        public bool IsUserValid(Usuario usuario)
+        {
+            return db.Usuarios.Where(u => u.UserName == usuario.UserName && u.Password == usuario.Password).Count() > 0 ? true : false;
+        }
 	}
 }

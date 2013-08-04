@@ -6,3 +6,11 @@ C:\Users\NestorLuis\documents\visual studio 2012\Projects\BO\BO\bin\Debug\Entity
 C:\Users\NestorLuis\documents\visual studio 2012\Projects\BO\BO\obj\Debug\BO.dll
 C:\Users\NestorLuis\documents\visual studio 2012\Projects\BO\BO\obj\Debug\BO.pdb
 C:\Users\NestorLuis\Documents\Visual Studio 2012\Projects\BO\BO\obj\Debug\BO.csprojResolveAssemblyReference.cache
+C:\Users\Alexandra\Documents\Visual Studio 2012\Projects\TDACL\BO\bin\Debug\BO.dll.config
+C:\Users\Alexandra\Documents\Visual Studio 2012\Projects\TDACL\BO\bin\Debug\BO.dll
+C:\Users\Alexandra\Documents\Visual Studio 2012\Projects\TDACL\BO\bin\Debug\BO.pdb
+C:\Users\Alexandra\Documents\Visual Studio 2012\Projects\TDACL\BO\bin\Debug\EntityFramework.dll
+C:\Users\Alexandra\Documents\Visual Studio 2012\Projects\TDACL\BO\bin\Debug\EntityFramework.xml
+C:\Users\Alexandra\Documents\Visual Studio 2012\Projects\TDACL\BO\obj\Debug\BO.csprojResolveAssemblyReference.cache
+C:\Users\Alexandra\Documents\Visual Studio 2012\Projects\TDACL\BO\obj\Debug\BO.dll
+C:\Users\Alexandra\Documents\Visual Studio 2012\Projects\TDACL\BO\obj\Debug\BO.pdb

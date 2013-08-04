@@ -180,7 +180,5 @@
         <ScalarProperty Name="Id" ColumnName="Usuarios_Id" />
       </EndProperty>
     </AssociationSetMapping>
-    <FunctionImportMapping FunctionImportName="GetLastestNews" FunctionName="ToyaldiaModel.Store.GetLastestNews" />
-    <FunctionImportMapping FunctionImportName="spExistsNews" FunctionName="ToyaldiaModel.Store.spExistsNews" />
   </EntityContainerMapping>
 </Mapping>

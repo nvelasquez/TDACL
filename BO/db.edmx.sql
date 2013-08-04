@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 08/02/2013 16:19:37
--- Generated from EDMX file: C:\Users\NestorLuis\Documents\Visual Studio 2012\Projects\BO\BO\db.edmx
+-- Date Created: 08/04/2013 03:06:22
+-- Generated from EDMX file: C:\Users\Alexandra\Documents\Visual Studio 2012\Projects\TDACL\BO\db.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -19,6 +19,9 @@ GO
 
 IF OBJECT_ID(N'[dbo].[FK_AdministratorsAdministratorContact]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[AdministratorContacts] DROP CONSTRAINT [FK_AdministratorsAdministratorContact];
+GO
+IF OBJECT_ID(N'[dbo].[fk_images_news]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Images] DROP CONSTRAINT [fk_images_news];
 GO
 IF OBJECT_ID(N'[dbo].[FK_PermisoRole_Permiso]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[PermisoRole] DROP CONSTRAINT [FK_PermisoRole_Permiso];
