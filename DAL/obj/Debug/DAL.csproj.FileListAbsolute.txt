@@ -1,0 +1,7 @@
+C:\Users\NestorLuis\documents\visual studio 2012\Projects\BO\DAL\bin\Debug\DAL.dll.config
+C:\Users\NestorLuis\documents\visual studio 2012\Projects\BO\DAL\bin\Debug\DAL.dll
+C:\Users\NestorLuis\documents\visual studio 2012\Projects\BO\DAL\bin\Debug\DAL.pdb
+C:\Users\NestorLuis\documents\visual studio 2012\Projects\BO\DAL\bin\Debug\EntityFramework.dll
+C:\Users\NestorLuis\documents\visual studio 2012\Projects\BO\DAL\bin\Debug\EntityFramework.xml
+C:\Users\NestorLuis\documents\visual studio 2012\Projects\BO\DAL\obj\Debug\DAL.dll
+C:\Users\NestorLuis\documents\visual studio 2012\Projects\BO\DAL\obj\Debug\DAL.pdb

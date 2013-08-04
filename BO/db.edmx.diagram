@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bcbcb1665dc14f4e9f66f3429649851b" Name="Diagrama1">
+        <EntityTypeShape EntityType="ToyaldiaModel.AdministratorContact" Width="1.5" PointX="11" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ToyaldiaModel.Administrator" Width="1.5" PointX="8.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ToyaldiaModel.Email" Width="1.5" PointX="5.25" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ToyaldiaModel.Feed" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ToyaldiaModel.News" Width="1.5" PointX="5.125" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ToyaldiaModel.Parameter" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ToyaldiaModel.Provider" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ToyaldiaModel.Section" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ToyaldiaModel.Subscription" Width="1.5" PointX="3" PointY="11.75" IsExpanded="true" />
+        <AssociationConnector Association="ToyaldiaModel.FK_AdministratorsAdministratorContact" ManuallyRouted="false" />
+        <AssociationConnector Association="ToyaldiaModel.FK_SubscriptionsEmails" ManuallyRouted="false" />
+        <AssociationConnector Association="ToyaldiaModel.FK_ProvidersFeeds" ManuallyRouted="false" />
+        <AssociationConnector Association="ToyaldiaModel.FK_SectionsFeeds" ManuallyRouted="false" />
+        <AssociationConnector Association="ToyaldiaModel.FK_ProvidersNews" ManuallyRouted="false" />
+        <AssociationConnector Association="ToyaldiaModel.FK_SectionsNews" ManuallyRouted="false" />
+        <AssociationConnector Association="ToyaldiaModel.SectionsSubscriptions" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ToyaldiaModel.Permiso" Width="1.5" PointX="7.125" PointY="11.75" />
+        <EntityTypeShape EntityType="ToyaldiaModel.Role" Width="1.5" PointX="4.1901324634394292" PointY="9.2485824717434966" />
+        <EntityTypeShape EntityType="ToyaldiaModel.Seccione" Width="1.5" PointX="7.2326279204490724" PointY="4.0838169623556624" />
+        <EntityTypeShape EntityType="ToyaldiaModel.Usuario" Width="1.5" PointX="2.230548867131839" PointY="14.787976808281604" />
+        <AssociationConnector Association="ToyaldiaModel.FK_PermisoSeccion" />
+        <AssociationConnector Association="ToyaldiaModel.FK_SeccionPermiso" />
+        <AssociationConnector Association="ToyaldiaModel.PermisoRole" />
+        <AssociationConnector Association="ToyaldiaModel.UsuarioRole" />
+        <EntityTypeShape EntityType="ToyaldiaModel.Image" Width="1.5" PointX="10" PointY="8" />
+        <AssociationConnector Association="ToyaldiaModel.fk_images_news" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

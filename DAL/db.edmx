@@ -1,0 +1,614 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ToyaldiaModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="ToyaldiaModelStoreContainer">
+          <EntitySet Name="AdministratorContacts" EntityType="ToyaldiaModel.Store.AdministratorContacts" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Administrators" EntityType="ToyaldiaModel.Store.Administrators" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Emails" EntityType="ToyaldiaModel.Store.Emails" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Feeds" EntityType="ToyaldiaModel.Store.Feeds" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="News" EntityType="ToyaldiaModel.Store.News" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Parameters" EntityType="ToyaldiaModel.Store.Parameters" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Providers" EntityType="ToyaldiaModel.Store.Providers" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Sections" EntityType="ToyaldiaModel.Store.Sections" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SectionsSubscriptions" EntityType="ToyaldiaModel.Store.SectionsSubscriptions" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Subscriptions" EntityType="ToyaldiaModel.Store.Subscriptions" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_AdministratorsAdministratorContact" Association="ToyaldiaModel.Store.FK_AdministratorsAdministratorContact">
+            <End Role="Administrators" EntitySet="Administrators" />
+            <End Role="AdministratorContacts" EntitySet="AdministratorContacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProvidersFeeds" Association="ToyaldiaModel.Store.FK_ProvidersFeeds">
+            <End Role="Providers" EntitySet="Providers" />
+            <End Role="Feeds" EntitySet="Feeds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProvidersNews" Association="ToyaldiaModel.Store.FK_ProvidersNews">
+            <End Role="Providers" EntitySet="Providers" />
+            <End Role="News" EntitySet="News" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SectionsFeeds" Association="ToyaldiaModel.Store.FK_SectionsFeeds">
+            <End Role="Sections" EntitySet="Sections" />
+            <End Role="Feeds" EntitySet="Feeds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SectionsNews" Association="ToyaldiaModel.Store.FK_SectionsNews">
+            <End Role="Sections" EntitySet="Sections" />
+            <End Role="News" EntitySet="News" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SectionsSubscriptions_Sections" Association="ToyaldiaModel.Store.FK_SectionsSubscriptions_Sections">
+            <End Role="Sections" EntitySet="Sections" />
+            <End Role="SectionsSubscriptions" EntitySet="SectionsSubscriptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SectionsSubscriptions_Subscriptions" Association="ToyaldiaModel.Store.FK_SectionsSubscriptions_Subscriptions">
+            <End Role="Subscriptions" EntitySet="Subscriptions" />
+            <End Role="SectionsSubscriptions" EntitySet="SectionsSubscriptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubscriptionsEmails" Association="ToyaldiaModel.Store.FK_SubscriptionsEmails">
+            <End Role="Subscriptions" EntitySet="Subscriptions" />
+            <End Role="Emails" EntitySet="Emails" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="AdministratorContacts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Contact" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Type" Type="nvarchar" Nullable="false" MaxLength="2" />
+          <Property Name="AdministratorsId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Administrators">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="DocumentId" Type="nvarchar" Nullable="false" MaxLength="11" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="LastUpdate" Type="datetime" Nullable="false" />
+          <Property Name="InsertedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Emails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="SubscriptionsId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Feeds">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Feed" Type="nvarchar" Nullable="false" MaxLength="500" />
+          <Property Name="InsertedDate" Type="datetime" Nullable="false" />
+          <Property Name="SectionsId" Type="int" Nullable="false" />
+          <Property Name="ProvidersId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="InsertedDate" Type="datetime" Nullable="false" />
+          <Property Name="ImageUrl" Type="nvarchar" MaxLength="500" />
+          <Property Name="ThumbnailUrl" Type="nvarchar" Nullable="false" MaxLength="500" />
+          <Property Name="SectionsId" Type="int" Nullable="false" />
+          <Property Name="ProvidersId" Type="int" Nullable="false" />
+          <Property Name="HasVideo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Parameters">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Value" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Active" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="InsertedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Providers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Url" Type="nvarchar" Nullable="false" MaxLength="500" />
+          <Property Name="InsertedDate" Type="datetime" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sections">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="InsertedDate" Type="datetime" Nullable="false" />
+          <Property Name="ImageUrl" Type="nvarchar" Nullable="false" MaxLength="500" />
+          <Property Name="ThumbnailUrl" Type="nvarchar" Nullable="false" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="SectionsSubscriptions">
+          <Key>
+            <PropertyRef Name="Sections_Id" />
+            <PropertyRef Name="Subscriptions_Id" />
+          </Key>
+          <Property Name="Sections_Id" Type="int" Nullable="false" />
+          <Property Name="Subscriptions_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Subscriptions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="InsertedDate" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AdministratorsAdministratorContact">
+          <End Role="Administrators" Type="ToyaldiaModel.Store.Administrators" Multiplicity="1" />
+          <End Role="AdministratorContacts" Type="ToyaldiaModel.Store.AdministratorContacts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Administrators">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AdministratorContacts">
+              <PropertyRef Name="AdministratorsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProvidersFeeds">
+          <End Role="Providers" Type="ToyaldiaModel.Store.Providers" Multiplicity="1" />
+          <End Role="Feeds" Type="ToyaldiaModel.Store.Feeds" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Providers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Feeds">
+              <PropertyRef Name="ProvidersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProvidersNews">
+          <End Role="Providers" Type="ToyaldiaModel.Store.Providers" Multiplicity="1" />
+          <End Role="News" Type="ToyaldiaModel.Store.News" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Providers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="News">
+              <PropertyRef Name="ProvidersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SectionsFeeds">
+          <End Role="Sections" Type="ToyaldiaModel.Store.Sections" Multiplicity="1" />
+          <End Role="Feeds" Type="ToyaldiaModel.Store.Feeds" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sections">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Feeds">
+              <PropertyRef Name="SectionsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SectionsNews">
+          <End Role="Sections" Type="ToyaldiaModel.Store.Sections" Multiplicity="1" />
+          <End Role="News" Type="ToyaldiaModel.Store.News" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sections">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="News">
+              <PropertyRef Name="SectionsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SectionsSubscriptions_Sections">
+          <End Role="Sections" Type="ToyaldiaModel.Store.Sections" Multiplicity="1" />
+          <End Role="SectionsSubscriptions" Type="ToyaldiaModel.Store.SectionsSubscriptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sections">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SectionsSubscriptions">
+              <PropertyRef Name="Sections_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SectionsSubscriptions_Subscriptions">
+          <End Role="Subscriptions" Type="ToyaldiaModel.Store.Subscriptions" Multiplicity="1" />
+          <End Role="SectionsSubscriptions" Type="ToyaldiaModel.Store.SectionsSubscriptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subscriptions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SectionsSubscriptions">
+              <PropertyRef Name="Subscriptions_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubscriptionsEmails">
+          <End Role="Subscriptions" Type="ToyaldiaModel.Store.Subscriptions" Multiplicity="1" />
+          <End Role="Emails" Type="ToyaldiaModel.Store.Emails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subscriptions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Emails">
+              <PropertyRef Name="SubscriptionsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ToyaldiaModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="dbContainer" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="AdministratorContacts" EntityType="ToyaldiaModel.AdministratorContact" />
+          <EntitySet Name="Administrators" EntityType="ToyaldiaModel.Administrator" />
+          <EntitySet Name="Emails" EntityType="ToyaldiaModel.Email" />
+          <EntitySet Name="Feeds" EntityType="ToyaldiaModel.Feed" />
+          <EntitySet Name="News" EntityType="ToyaldiaModel.News" />
+          <EntitySet Name="Parameters" EntityType="ToyaldiaModel.Parameter" />
+          <EntitySet Name="Providers" EntityType="ToyaldiaModel.Provider" />
+          <EntitySet Name="Sections" EntityType="ToyaldiaModel.Section" />
+          <EntitySet Name="Subscriptions" EntityType="ToyaldiaModel.Subscription" />
+          <AssociationSet Name="FK_AdministratorsAdministratorContact" Association="ToyaldiaModel.FK_AdministratorsAdministratorContact">
+            <End Role="Administrators" EntitySet="Administrators" />
+            <End Role="AdministratorContacts" EntitySet="AdministratorContacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubscriptionsEmails" Association="ToyaldiaModel.FK_SubscriptionsEmails">
+            <End Role="Subscriptions" EntitySet="Subscriptions" />
+            <End Role="Emails" EntitySet="Emails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProvidersFeeds" Association="ToyaldiaModel.FK_ProvidersFeeds">
+            <End Role="Providers" EntitySet="Providers" />
+            <End Role="Feeds" EntitySet="Feeds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SectionsFeeds" Association="ToyaldiaModel.FK_SectionsFeeds">
+            <End Role="Sections" EntitySet="Sections" />
+            <End Role="Feeds" EntitySet="Feeds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProvidersNews" Association="ToyaldiaModel.FK_ProvidersNews">
+            <End Role="Providers" EntitySet="Providers" />
+            <End Role="News" EntitySet="News" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SectionsNews" Association="ToyaldiaModel.FK_SectionsNews">
+            <End Role="Sections" EntitySet="Sections" />
+            <End Role="News" EntitySet="News" />
+          </AssociationSet>
+          <AssociationSet Name="SectionsSubscriptions" Association="ToyaldiaModel.SectionsSubscriptions">
+            <End Role="Sections" EntitySet="Sections" />
+            <End Role="Subscriptions" EntitySet="Subscriptions" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="AdministratorContact">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Contact" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="2" Unicode="true" FixedLength="false" />
+          <Property Name="AdministratorsId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Administrator" Relationship="ToyaldiaModel.FK_AdministratorsAdministratorContact" FromRole="AdministratorContacts" ToRole="Administrators" />
+        </EntityType>
+        <EntityType Name="Administrator">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="DocumentId" Type="String" Nullable="false" MaxLength="11" Unicode="true" FixedLength="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="InsertedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="AdministratorContacts" Relationship="ToyaldiaModel.FK_AdministratorsAdministratorContact" FromRole="Administrators" ToRole="AdministratorContacts" />
+        </EntityType>
+        <EntityType Name="Email">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Email1" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="SubscriptionsId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Subscription" Relationship="ToyaldiaModel.FK_SubscriptionsEmails" FromRole="Emails" ToRole="Subscriptions" />
+        </EntityType>
+        <EntityType Name="Feed">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Feed1" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="InsertedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SectionsId" Type="Int32" Nullable="false" />
+          <Property Name="ProvidersId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Provider" Relationship="ToyaldiaModel.FK_ProvidersFeeds" FromRole="Feeds" ToRole="Providers" />
+          <NavigationProperty Name="Section" Relationship="ToyaldiaModel.FK_SectionsFeeds" FromRole="Feeds" ToRole="Sections" />
+        </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Content" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="InsertedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ImageUrl" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="ThumbnailUrl" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="SectionsId" Type="Int32" Nullable="false" />
+          <Property Name="ProvidersId" Type="Int32" Nullable="false" />
+          <Property Name="HasVideo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Provider" Relationship="ToyaldiaModel.FK_ProvidersNews" FromRole="News" ToRole="Providers" />
+          <NavigationProperty Name="Section" Relationship="ToyaldiaModel.FK_SectionsNews" FromRole="News" ToRole="Sections" />
+        </EntityType>
+        <EntityType Name="Parameter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Value" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Active" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="InsertedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Provider">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Url" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="InsertedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Feeds" Relationship="ToyaldiaModel.FK_ProvidersFeeds" FromRole="Providers" ToRole="Feeds" />
+          <NavigationProperty Name="News" Relationship="ToyaldiaModel.FK_ProvidersNews" FromRole="Providers" ToRole="News" />
+        </EntityType>
+        <EntityType Name="Section">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="InsertedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ImageUrl" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="ThumbnailUrl" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Feeds" Relationship="ToyaldiaModel.FK_SectionsFeeds" FromRole="Sections" ToRole="Feeds" />
+          <NavigationProperty Name="News" Relationship="ToyaldiaModel.FK_SectionsNews" FromRole="Sections" ToRole="News" />
+          <NavigationProperty Name="Subscriptions" Relationship="ToyaldiaModel.SectionsSubscriptions" FromRole="Sections" ToRole="Subscriptions" />
+        </EntityType>
+        <EntityType Name="Subscription">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="InsertedDate" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Emails" Relationship="ToyaldiaModel.FK_SubscriptionsEmails" FromRole="Subscriptions" ToRole="Emails" />
+          <NavigationProperty Name="Sections" Relationship="ToyaldiaModel.SectionsSubscriptions" FromRole="Subscriptions" ToRole="Sections" />
+        </EntityType>
+        <Association Name="FK_AdministratorsAdministratorContact">
+          <End Role="Administrators" Type="ToyaldiaModel.Administrator" Multiplicity="1" />
+          <End Role="AdministratorContacts" Type="ToyaldiaModel.AdministratorContact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Administrators">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AdministratorContacts">
+              <PropertyRef Name="AdministratorsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubscriptionsEmails">
+          <End Role="Subscriptions" Type="ToyaldiaModel.Subscription" Multiplicity="1" />
+          <End Role="Emails" Type="ToyaldiaModel.Email" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subscriptions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Emails">
+              <PropertyRef Name="SubscriptionsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProvidersFeeds">
+          <End Role="Providers" Type="ToyaldiaModel.Provider" Multiplicity="1" />
+          <End Role="Feeds" Type="ToyaldiaModel.Feed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Providers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Feeds">
+              <PropertyRef Name="ProvidersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SectionsFeeds">
+          <End Role="Sections" Type="ToyaldiaModel.Section" Multiplicity="1" />
+          <End Role="Feeds" Type="ToyaldiaModel.Feed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sections">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Feeds">
+              <PropertyRef Name="SectionsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProvidersNews">
+          <End Role="Providers" Type="ToyaldiaModel.Provider" Multiplicity="1" />
+          <End Role="News" Type="ToyaldiaModel.News" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Providers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="News">
+              <PropertyRef Name="ProvidersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SectionsNews">
+          <End Role="Sections" Type="ToyaldiaModel.Section" Multiplicity="1" />
+          <End Role="News" Type="ToyaldiaModel.News" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sections">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="News">
+              <PropertyRef Name="SectionsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SectionsSubscriptions">
+          <End Role="Sections" Type="ToyaldiaModel.Section" Multiplicity="*" />
+          <End Role="Subscriptions" Type="ToyaldiaModel.Subscription" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ToyaldiaModelStoreContainer" CdmEntityContainer="dbContainer">
+          <EntitySetMapping Name="AdministratorContacts">
+            <EntityTypeMapping TypeName="ToyaldiaModel.AdministratorContact">
+              <MappingFragment StoreEntitySet="AdministratorContacts">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="AdministratorsId" ColumnName="AdministratorsId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Administrators">
+            <EntityTypeMapping TypeName="ToyaldiaModel.Administrator">
+              <MappingFragment StoreEntitySet="Administrators">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="InsertedDate" ColumnName="InsertedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Emails">
+            <EntityTypeMapping TypeName="ToyaldiaModel.Email">
+              <MappingFragment StoreEntitySet="Emails">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email1" ColumnName="Email" />
+                <ScalarProperty Name="SubscriptionsId" ColumnName="SubscriptionsId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Feeds">
+            <EntityTypeMapping TypeName="ToyaldiaModel.Feed">
+              <MappingFragment StoreEntitySet="Feeds">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Feed1" ColumnName="Feed" />
+                <ScalarProperty Name="InsertedDate" ColumnName="InsertedDate" />
+                <ScalarProperty Name="SectionsId" ColumnName="SectionsId" />
+                <ScalarProperty Name="ProvidersId" ColumnName="ProvidersId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="News">
+            <EntityTypeMapping TypeName="ToyaldiaModel.News">
+              <MappingFragment StoreEntitySet="News">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="InsertedDate" ColumnName="InsertedDate" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="ThumbnailUrl" ColumnName="ThumbnailUrl" />
+                <ScalarProperty Name="SectionsId" ColumnName="SectionsId" />
+                <ScalarProperty Name="ProvidersId" ColumnName="ProvidersId" />
+                <ScalarProperty Name="HasVideo" ColumnName="HasVideo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Parameters">
+            <EntityTypeMapping TypeName="ToyaldiaModel.Parameter">
+              <MappingFragment StoreEntitySet="Parameters">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="InsertedDate" ColumnName="InsertedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Providers">
+            <EntityTypeMapping TypeName="ToyaldiaModel.Provider">
+              <MappingFragment StoreEntitySet="Providers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="InsertedDate" ColumnName="InsertedDate" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sections">
+            <EntityTypeMapping TypeName="ToyaldiaModel.Section">
+              <MappingFragment StoreEntitySet="Sections">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="InsertedDate" ColumnName="InsertedDate" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="ThumbnailUrl" ColumnName="ThumbnailUrl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subscriptions">
+            <EntityTypeMapping TypeName="ToyaldiaModel.Subscription">
+              <MappingFragment StoreEntitySet="Subscriptions">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="InsertedDate" ColumnName="InsertedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="SectionsSubscriptions" TypeName="ToyaldiaModel.SectionsSubscriptions" StoreEntitySet="SectionsSubscriptions">
+            <EndProperty Name="Sections">
+              <ScalarProperty Name="Id" ColumnName="Sections_Id" />
+            </EndProperty>
+            <EndProperty Name="Subscriptions">
+              <ScalarProperty Name="Id" ColumnName="Subscriptions_Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Predeterminado" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

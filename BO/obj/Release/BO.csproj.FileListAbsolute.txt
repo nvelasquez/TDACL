@@ -1,0 +1,8 @@
+C:\Users\NestorLuis\Documents\Visual Studio 2012\Projects\BO\BO\bin\Release\BO.dll.config
+C:\Users\NestorLuis\Documents\Visual Studio 2012\Projects\BO\BO\bin\Release\BO.dll
+C:\Users\NestorLuis\Documents\Visual Studio 2012\Projects\BO\BO\bin\Release\BO.pdb
+C:\Users\NestorLuis\Documents\Visual Studio 2012\Projects\BO\BO\bin\Release\EntityFramework.dll
+C:\Users\NestorLuis\Documents\Visual Studio 2012\Projects\BO\BO\bin\Release\EntityFramework.xml
+C:\Users\NestorLuis\Documents\Visual Studio 2012\Projects\BO\BO\obj\Release\BO.csprojResolveAssemblyReference.cache
+C:\Users\NestorLuis\Documents\Visual Studio 2012\Projects\BO\BO\obj\Release\BO.dll
+C:\Users\NestorLuis\Documents\Visual Studio 2012\Projects\BO\BO\obj\Release\BO.pdb
