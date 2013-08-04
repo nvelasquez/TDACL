@@ -26,11 +26,10 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("ToyaldiaModel", "FK_ProvidersNews", "Providers", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(BO.Provider), "News", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(BO.News), true)]
 [assembly: EdmRelationshipAttribute("ToyaldiaModel", "FK_SectionsNews", "Sections", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(BO.Section), "News", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(BO.News), true)]
 [assembly: EdmRelationshipAttribute("ToyaldiaModel", "SectionsSubscriptions", "Sections", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(BO.Section), "Subscriptions", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(BO.Subscription))]
-[assembly: EdmRelationshipAttribute("ToyaldiaModel", "FK_PermisoSeccion", "Seccione", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(BO.Seccione), "Permiso", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(BO.Permiso), true)]
-[assembly: EdmRelationshipAttribute("ToyaldiaModel", "FK_SeccionPermiso", "Seccione", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(BO.Seccione), "Permiso", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(BO.Permiso), true)]
 [assembly: EdmRelationshipAttribute("ToyaldiaModel", "PermisoRole", "Permiso", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(BO.Permiso), "Role", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(BO.Role))]
-[assembly: EdmRelationshipAttribute("ToyaldiaModel", "UsuarioRole", "Role", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(BO.Role), "Usuario", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(BO.Usuario))]
 [assembly: EdmRelationshipAttribute("ToyaldiaModel", "fk_images_news", "News", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(BO.News), "Image", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(BO.Image), true)]
+[assembly: EdmRelationshipAttribute("ToyaldiaModel", "RoleUsuario", "Role", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(BO.Role), "Usuario", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(BO.Usuario), true)]
+[assembly: EdmRelationshipAttribute("ToyaldiaModel", "SeccionePermiso", "Seccione", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(BO.Seccione), "Permiso", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(BO.Permiso), true)]
 
 #endregion
 
@@ -2062,13 +2061,15 @@ namespace BO
         /// <param name="nombre">Initial value of the Nombre property.</param>
         /// <param name="url">Initial value of the Url property.</param>
         /// <param name="seccionId">Initial value of the SeccionId property.</param>
-        public static Permiso CreatePermiso(global::System.Int32 id, global::System.String nombre, global::System.String url, global::System.Int32 seccionId)
+        /// <param name="seccioneId">Initial value of the SeccioneId property.</param>
+        public static Permiso CreatePermiso(global::System.Int32 id, global::System.String nombre, global::System.String url, global::System.Int32 seccionId, global::System.Int32 seccioneId)
         {
             Permiso permiso = new Permiso();
             permiso.Id = id;
             permiso.Nombre = nombre;
             permiso.Url = url;
             permiso.SeccionId = seccionId;
+            permiso.SeccioneId = seccioneId;
             return permiso;
         }
 
@@ -2174,86 +2175,34 @@ namespace BO
         private global::System.Int32 _SeccionId;
         partial void OnSeccionIdChanging(global::System.Int32 value);
         partial void OnSeccionIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 SeccioneId
+        {
+            get
+            {
+                return _SeccioneId;
+            }
+            set
+            {
+                OnSeccioneIdChanging(value);
+                ReportPropertyChanging("SeccioneId");
+                _SeccioneId = StructuralObject.SetValidValue(value, "SeccioneId");
+                ReportPropertyChanged("SeccioneId");
+                OnSeccioneIdChanged();
+            }
+        }
+        private global::System.Int32 _SeccioneId;
+        partial void OnSeccioneIdChanging(global::System.Int32 value);
+        partial void OnSeccioneIdChanged();
 
         #endregion
 
         #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("ToyaldiaModel", "FK_PermisoSeccion", "Seccione")]
-        public Seccione Seccione
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Seccione>("ToyaldiaModel.FK_PermisoSeccion", "Seccione").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Seccione>("ToyaldiaModel.FK_PermisoSeccion", "Seccione").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Seccione> SeccioneReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Seccione>("ToyaldiaModel.FK_PermisoSeccion", "Seccione");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Seccione>("ToyaldiaModel.FK_PermisoSeccion", "Seccione", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("ToyaldiaModel", "FK_SeccionPermiso", "Seccione")]
-        public Seccione Seccione1
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Seccione>("ToyaldiaModel.FK_SeccionPermiso", "Seccione").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Seccione>("ToyaldiaModel.FK_SeccionPermiso", "Seccione").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Seccione> Seccione1Reference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Seccione>("ToyaldiaModel.FK_SeccionPermiso", "Seccione");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Seccione>("ToyaldiaModel.FK_SeccionPermiso", "Seccione", value);
-                }
-            }
-        }
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -2273,6 +2222,44 @@ namespace BO
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Role>("ToyaldiaModel.PermisoRole", "Role", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("ToyaldiaModel", "SeccionePermiso", "Seccione")]
+        public Seccione Seccione
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Seccione>("ToyaldiaModel.SeccionePermiso", "Seccione").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Seccione>("ToyaldiaModel.SeccionePermiso", "Seccione").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Seccione> SeccioneReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Seccione>("ToyaldiaModel.SeccionePermiso", "Seccione");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Seccione>("ToyaldiaModel.SeccionePermiso", "Seccione", value);
                 }
             }
         }
@@ -2649,18 +2636,18 @@ namespace BO
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("ToyaldiaModel", "UsuarioRole", "Usuario")]
+        [EdmRelationshipNavigationPropertyAttribute("ToyaldiaModel", "RoleUsuario", "Usuario")]
         public EntityCollection<Usuario> Usuarios
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Usuario>("ToyaldiaModel.UsuarioRole", "Usuario");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Usuario>("ToyaldiaModel.RoleUsuario", "Usuario");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Usuario>("ToyaldiaModel.UsuarioRole", "Usuario", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Usuario>("ToyaldiaModel.RoleUsuario", "Usuario", value);
                 }
             }
         }
@@ -2783,40 +2770,18 @@ namespace BO
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("ToyaldiaModel", "FK_PermisoSeccion", "Permiso")]
+        [EdmRelationshipNavigationPropertyAttribute("ToyaldiaModel", "SeccionePermiso", "Permiso")]
         public EntityCollection<Permiso> Permisos
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Permiso>("ToyaldiaModel.FK_PermisoSeccion", "Permiso");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Permiso>("ToyaldiaModel.SeccionePermiso", "Permiso");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Permiso>("ToyaldiaModel.FK_PermisoSeccion", "Permiso", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("ToyaldiaModel", "FK_SeccionPermiso", "Permiso")]
-        public EntityCollection<Permiso> Permisos1
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Permiso>("ToyaldiaModel.FK_SeccionPermiso", "Permiso");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Permiso>("ToyaldiaModel.FK_SeccionPermiso", "Permiso", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Permiso>("ToyaldiaModel.SeccionePermiso", "Permiso", value);
                 }
             }
         }
@@ -3278,7 +3243,8 @@ namespace BO
         /// <param name="email">Initial value of the Email property.</param>
         /// <param name="activo">Initial value of the Activo property.</param>
         /// <param name="tipo">Initial value of the Tipo property.</param>
-        public static Usuario CreateUsuario(global::System.Int32 id, global::System.String userName, global::System.String password, global::System.String email, global::System.Boolean activo, global::System.Int32 tipo)
+        /// <param name="roleId">Initial value of the RoleId property.</param>
+        public static Usuario CreateUsuario(global::System.Int32 id, global::System.String userName, global::System.String password, global::System.String email, global::System.Boolean activo, global::System.Int32 tipo, global::System.Int32 roleId)
         {
             Usuario usuario = new Usuario();
             usuario.Id = id;
@@ -3287,6 +3253,7 @@ namespace BO
             usuario.Email = email;
             usuario.Activo = activo;
             usuario.Tipo = tipo;
+            usuario.RoleId = roleId;
             return usuario;
         }
 
@@ -3440,6 +3407,30 @@ namespace BO
         private global::System.Int32 _Tipo;
         partial void OnTipoChanging(global::System.Int32 value);
         partial void OnTipoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 RoleId
+        {
+            get
+            {
+                return _RoleId;
+            }
+            set
+            {
+                OnRoleIdChanging(value);
+                ReportPropertyChanging("RoleId");
+                _RoleId = StructuralObject.SetValidValue(value, "RoleId");
+                ReportPropertyChanged("RoleId");
+                OnRoleIdChanged();
+            }
+        }
+        private global::System.Int32 _RoleId;
+        partial void OnRoleIdChanging(global::System.Int32 value);
+        partial void OnRoleIdChanged();
 
         #endregion
 
@@ -3451,18 +3442,34 @@ namespace BO
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("ToyaldiaModel", "UsuarioRole", "Role")]
-        public EntityCollection<Role> Roles
+        [EdmRelationshipNavigationPropertyAttribute("ToyaldiaModel", "RoleUsuario", "Role")]
+        public Role Role
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Role>("ToyaldiaModel.UsuarioRole", "Role");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Role>("ToyaldiaModel.RoleUsuario", "Role").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Role>("ToyaldiaModel.RoleUsuario", "Role").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Role> RoleReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Role>("ToyaldiaModel.RoleUsuario", "Role");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Role>("ToyaldiaModel.UsuarioRole", "Role", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Role>("ToyaldiaModel.RoleUsuario", "Role", value);
                 }
             }
         }

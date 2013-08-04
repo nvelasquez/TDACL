@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 08/02/2013 16:19:37
+-- Date Created: 08/03/2013 22:28:12
 -- Generated from EDMX file: C:\Users\NestorLuis\Documents\Visual Studio 2012\Projects\BO\BO\db.edmx
 -- --------------------------------------------------
 
@@ -19,6 +19,9 @@ GO
 
 IF OBJECT_ID(N'[dbo].[FK_AdministratorsAdministratorContact]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[AdministratorContacts] DROP CONSTRAINT [FK_AdministratorsAdministratorContact];
+GO
+IF OBJECT_ID(N'[dbo].[fk_images_news]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Images] DROP CONSTRAINT [fk_images_news];
 GO
 IF OBJECT_ID(N'[dbo].[FK_PermisoRole_Permiso]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[PermisoRole] DROP CONSTRAINT [FK_PermisoRole_Permiso];
@@ -52,12 +55,6 @@ IF OBJECT_ID(N'[dbo].[FK_SectionsSubscriptions_Subscriptions]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_SubscriptionsEmails]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Emails] DROP CONSTRAINT [FK_SubscriptionsEmails];
-GO
-IF OBJECT_ID(N'[dbo].[FK_UsuarioRole_Role]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[UsuarioRole] DROP CONSTRAINT [FK_UsuarioRole_Role];
-GO
-IF OBJECT_ID(N'[dbo].[FK_UsuarioRole_Usuario]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[UsuarioRole] DROP CONSTRAINT [FK_UsuarioRole_Usuario];
 GO
 
 -- --------------------------------------------------
@@ -108,9 +105,6 @@ IF OBJECT_ID(N'[dbo].[SectionsSubscriptions]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[Subscriptions]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Subscriptions];
-GO
-IF OBJECT_ID(N'[dbo].[UsuarioRole]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[UsuarioRole];
 GO
 IF OBJECT_ID(N'[dbo].[Usuarios]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Usuarios];
@@ -220,7 +214,8 @@ CREATE TABLE [dbo].[Permisos] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Nombre] nvarchar(max)  NOT NULL,
     [Url] nvarchar(max)  NOT NULL,
-    [SeccionId] int  NOT NULL
+    [SeccionId] int  NOT NULL,
+    [SeccioneId] int  NOT NULL
 );
 GO
 
@@ -247,7 +242,8 @@ CREATE TABLE [dbo].[Usuarios] (
     [Password] nvarchar(max)  NOT NULL,
     [Email] nvarchar(max)  NOT NULL,
     [Activo] bit  NOT NULL,
-    [Tipo] int  NOT NULL
+    [Tipo] int  NOT NULL,
+    [RoleId] int  NOT NULL
 );
 GO
 
@@ -272,13 +268,6 @@ GO
 CREATE TABLE [dbo].[PermisoRole] (
     [Permisos_Id] int  NOT NULL,
     [Roles_Id] int  NOT NULL
-);
-GO
-
--- Creating table 'UsuarioRole'
-CREATE TABLE [dbo].[UsuarioRole] (
-    [Roles_Id] int  NOT NULL,
-    [Usuarios_Id] int  NOT NULL
 );
 GO
 
@@ -380,12 +369,6 @@ GO
 ALTER TABLE [dbo].[PermisoRole]
 ADD CONSTRAINT [PK_PermisoRole]
     PRIMARY KEY NONCLUSTERED ([Permisos_Id], [Roles_Id] ASC);
-GO
-
--- Creating primary key on [Roles_Id], [Usuarios_Id] in table 'UsuarioRole'
-ALTER TABLE [dbo].[UsuarioRole]
-ADD CONSTRAINT [PK_UsuarioRole]
-    PRIMARY KEY NONCLUSTERED ([Roles_Id], [Usuarios_Id] ASC);
 GO
 
 -- --------------------------------------------------
@@ -499,34 +482,6 @@ ON [dbo].[SectionsSubscriptions]
     ([Subscriptions_Id]);
 GO
 
--- Creating foreign key on [SeccionId] in table 'Permisos'
-ALTER TABLE [dbo].[Permisos]
-ADD CONSTRAINT [FK_PermisoSeccion]
-    FOREIGN KEY ([SeccionId])
-    REFERENCES [dbo].[Secciones]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_PermisoSeccion'
-CREATE INDEX [IX_FK_PermisoSeccion]
-ON [dbo].[Permisos]
-    ([SeccionId]);
-GO
-
--- Creating foreign key on [SeccionId] in table 'Permisos'
-ALTER TABLE [dbo].[Permisos]
-ADD CONSTRAINT [FK_SeccionPermiso]
-    FOREIGN KEY ([SeccionId])
-    REFERENCES [dbo].[Secciones]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_SeccionPermiso'
-CREATE INDEX [IX_FK_SeccionPermiso]
-ON [dbo].[Permisos]
-    ([SeccionId]);
-GO
-
 -- Creating foreign key on [Permisos_Id] in table 'PermisoRole'
 ALTER TABLE [dbo].[PermisoRole]
 ADD CONSTRAINT [FK_PermisoRole_Permiso]
@@ -550,29 +505,6 @@ ON [dbo].[PermisoRole]
     ([Roles_Id]);
 GO
 
--- Creating foreign key on [Roles_Id] in table 'UsuarioRole'
-ALTER TABLE [dbo].[UsuarioRole]
-ADD CONSTRAINT [FK_UsuarioRole_Role]
-    FOREIGN KEY ([Roles_Id])
-    REFERENCES [dbo].[Roles]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating foreign key on [Usuarios_Id] in table 'UsuarioRole'
-ALTER TABLE [dbo].[UsuarioRole]
-ADD CONSTRAINT [FK_UsuarioRole_Usuario]
-    FOREIGN KEY ([Usuarios_Id])
-    REFERENCES [dbo].[Usuarios]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_UsuarioRole_Usuario'
-CREATE INDEX [IX_FK_UsuarioRole_Usuario]
-ON [dbo].[UsuarioRole]
-    ([Usuarios_Id]);
-GO
-
 -- Creating foreign key on [NewsId] in table 'Images'
 ALTER TABLE [dbo].[Images]
 ADD CONSTRAINT [fk_images_news]
@@ -585,6 +517,34 @@ ADD CONSTRAINT [fk_images_news]
 CREATE INDEX [IX_fk_images_news]
 ON [dbo].[Images]
     ([NewsId]);
+GO
+
+-- Creating foreign key on [RoleId] in table 'Usuarios'
+ALTER TABLE [dbo].[Usuarios]
+ADD CONSTRAINT [FK_RoleUsuario]
+    FOREIGN KEY ([RoleId])
+    REFERENCES [dbo].[Roles]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_RoleUsuario'
+CREATE INDEX [IX_FK_RoleUsuario]
+ON [dbo].[Usuarios]
+    ([RoleId]);
+GO
+
+-- Creating foreign key on [SeccioneId] in table 'Permisos'
+ALTER TABLE [dbo].[Permisos]
+ADD CONSTRAINT [FK_SeccionePermiso]
+    FOREIGN KEY ([SeccioneId])
+    REFERENCES [dbo].[Secciones]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_SeccionePermiso'
+CREATE INDEX [IX_FK_SeccionePermiso]
+ON [dbo].[Permisos]
+    ([SeccioneId]);
 GO
 
 -- --------------------------------------------------

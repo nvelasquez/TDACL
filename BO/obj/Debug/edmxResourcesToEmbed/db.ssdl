@@ -5,54 +5,37 @@
     <EntitySet Name="Administrators" EntityType="ToyaldiaModel.Store.Administrators" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Emails" EntityType="ToyaldiaModel.Store.Emails" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Feeds" EntityType="ToyaldiaModel.Store.Feeds" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Images" EntityType="ToyaldiaModel.Store.Images" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="News" EntityType="ToyaldiaModel.Store.News" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Parameters" EntityType="ToyaldiaModel.Store.Parameters" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="PermisoRole" EntityType="ToyaldiaModel.Store.PermisoRole" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Permisos" EntityType="ToyaldiaModel.Store.Permisos" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Providers" EntityType="ToyaldiaModel.Store.Providers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Sections" EntityType="ToyaldiaModel.Store.Sections" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Subscriptions" EntityType="ToyaldiaModel.Store.Subscriptions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Permisos" EntityType="ToyaldiaModel.Store.Permisos" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Roles" EntityType="ToyaldiaModel.Store.Roles" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Secciones" EntityType="ToyaldiaModel.Store.Secciones" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Sections" EntityType="ToyaldiaModel.Store.Sections" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="SectionsSubscriptions" EntityType="ToyaldiaModel.Store.SectionsSubscriptions" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Subscriptions" EntityType="ToyaldiaModel.Store.Subscriptions" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="UsuarioRole" EntityType="ToyaldiaModel.Store.UsuarioRole" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Usuarios" EntityType="ToyaldiaModel.Store.Usuarios" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Images" EntityType="ToyaldiaModel.Store.Images" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SectionsSubscriptions" EntityType="ToyaldiaModel.Store.SectionsSubscriptions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PermisoRole" EntityType="ToyaldiaModel.Store.PermisoRole" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_AdministratorsAdministratorContact" Association="ToyaldiaModel.Store.FK_AdministratorsAdministratorContact">
       <End Role="Administrators" EntitySet="Administrators" />
       <End Role="AdministratorContacts" EntitySet="AdministratorContacts" />
     </AssociationSet>
-    <AssociationSet Name="fk_images_news" Association="ToyaldiaModel.Store.fk_images_news">
-      <End Role="News" EntitySet="News" />
-      <End Role="Images" EntitySet="Images" />
-    </AssociationSet>
-    <AssociationSet Name="FK_PermisoRole_Permiso" Association="ToyaldiaModel.Store.FK_PermisoRole_Permiso">
-      <End Role="Permisos" EntitySet="Permisos" />
-      <End Role="PermisoRole" EntitySet="PermisoRole" />
-    </AssociationSet>
-    <AssociationSet Name="FK_PermisoRole_Role" Association="ToyaldiaModel.Store.FK_PermisoRole_Role">
-      <End Role="Roles" EntitySet="Roles" />
-      <End Role="PermisoRole" EntitySet="PermisoRole" />
-    </AssociationSet>
-    <AssociationSet Name="FK_PermisoSeccion" Association="ToyaldiaModel.Store.FK_PermisoSeccion">
-      <End Role="Secciones" EntitySet="Secciones" />
-      <End Role="Permisos" EntitySet="Permisos" />
+    <AssociationSet Name="FK_SubscriptionsEmails" Association="ToyaldiaModel.Store.FK_SubscriptionsEmails">
+      <End Role="Subscriptions" EntitySet="Subscriptions" />
+      <End Role="Emails" EntitySet="Emails" />
     </AssociationSet>
     <AssociationSet Name="FK_ProvidersFeeds" Association="ToyaldiaModel.Store.FK_ProvidersFeeds">
       <End Role="Providers" EntitySet="Providers" />
       <End Role="Feeds" EntitySet="Feeds" />
     </AssociationSet>
-    <AssociationSet Name="FK_ProvidersNews" Association="ToyaldiaModel.Store.FK_ProvidersNews">
-      <End Role="Providers" EntitySet="Providers" />
-      <End Role="News" EntitySet="News" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SeccionPermiso" Association="ToyaldiaModel.Store.FK_SeccionPermiso">
-      <End Role="Secciones" EntitySet="Secciones" />
-      <End Role="Permisos" EntitySet="Permisos" />
-    </AssociationSet>
     <AssociationSet Name="FK_SectionsFeeds" Association="ToyaldiaModel.Store.FK_SectionsFeeds">
       <End Role="Sections" EntitySet="Sections" />
       <End Role="Feeds" EntitySet="Feeds" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProvidersNews" Association="ToyaldiaModel.Store.FK_ProvidersNews">
+      <End Role="Providers" EntitySet="Providers" />
+      <End Role="News" EntitySet="News" />
     </AssociationSet>
     <AssociationSet Name="FK_SectionsNews" Association="ToyaldiaModel.Store.FK_SectionsNews">
       <End Role="Sections" EntitySet="Sections" />
@@ -66,24 +49,32 @@
       <End Role="Subscriptions" EntitySet="Subscriptions" />
       <End Role="SectionsSubscriptions" EntitySet="SectionsSubscriptions" />
     </AssociationSet>
-    <AssociationSet Name="FK_SubscriptionsEmails" Association="ToyaldiaModel.Store.FK_SubscriptionsEmails">
-      <End Role="Subscriptions" EntitySet="Subscriptions" />
-      <End Role="Emails" EntitySet="Emails" />
+    <AssociationSet Name="FK_PermisoRole_Permiso" Association="ToyaldiaModel.Store.FK_PermisoRole_Permiso">
+      <End Role="Permiso" EntitySet="Permisos" />
+      <End Role="PermisoRole" EntitySet="PermisoRole" />
     </AssociationSet>
-    <AssociationSet Name="FK_UsuarioRole_Role" Association="ToyaldiaModel.Store.FK_UsuarioRole_Role">
-      <End Role="Roles" EntitySet="Roles" />
-      <End Role="UsuarioRole" EntitySet="UsuarioRole" />
+    <AssociationSet Name="FK_PermisoRole_Role" Association="ToyaldiaModel.Store.FK_PermisoRole_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="PermisoRole" EntitySet="PermisoRole" />
     </AssociationSet>
-    <AssociationSet Name="FK_UsuarioRole_Usuario" Association="ToyaldiaModel.Store.FK_UsuarioRole_Usuario">
-      <End Role="Usuarios" EntitySet="Usuarios" />
-      <End Role="UsuarioRole" EntitySet="UsuarioRole" />
+    <AssociationSet Name="fk_images_news" Association="ToyaldiaModel.Store.fk_images_news">
+      <End Role="News" EntitySet="News" />
+      <End Role="Image" EntitySet="Images" />
+    </AssociationSet>
+    <AssociationSet Name="RoleUsuario" Association="ToyaldiaModel.Store.RoleUsuario">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="Usuario" EntitySet="Usuarios" />
+    </AssociationSet>
+    <AssociationSet Name="SeccionePermiso" Association="ToyaldiaModel.Store.SeccionePermiso">
+      <End Role="Seccione" EntitySet="Secciones" />
+      <End Role="Permiso" EntitySet="Permisos" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="AdministratorContacts">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Contact" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="Type" Type="nvarchar" Nullable="false" MaxLength="2" />
     <Property Name="AdministratorsId" Type="int" Nullable="false" />
@@ -92,7 +83,7 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="DocumentId" Type="nvarchar" Nullable="false" MaxLength="11" />
@@ -104,7 +95,7 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Email1" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="SubscriptionsId" Type="int" Nullable="false" />
   </EntityType>
@@ -112,27 +103,17 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Feed1" Type="nvarchar" Nullable="false" MaxLength="500" />
     <Property Name="InsertedDate" Type="datetime" Nullable="false" />
     <Property Name="SectionsId" Type="int" Nullable="false" />
     <Property Name="ProvidersId" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="Images">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="NewsId" Type="int" Nullable="false" />
-    <Property Name="Url" Type="varchar" Nullable="false" MaxLength="500" />
-    <Property Name="Thumbnail" Type="varchar" MaxLength="500" />
-    <Property Name="Hight" Type="varchar" MaxLength="500" />
-  </EntityType>
   <EntityType Name="News">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Title" Type="varchar" Nullable="false" MaxLength="500" />
     <Property Name="Content" Type="varchar(max)" Nullable="false" />
     <Property Name="InsertedDate" Type="datetime" Nullable="false" />
@@ -147,45 +128,58 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="Value" Type="nvarchar" Nullable="false" MaxLength="100" />
     <Property Name="Active" Type="nvarchar(max)" Nullable="false" />
     <Property Name="InsertedDate" Type="datetime" Nullable="false" />
   </EntityType>
-  <EntityType Name="PermisoRole">
+  <EntityType Name="Providers">
     <Key>
-      <PropertyRef Name="Permisos_Id" />
-      <PropertyRef Name="Roles_Id" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Permisos_Id" Type="int" Nullable="false" />
-    <Property Name="Roles_Id" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Url" Type="nvarchar" Nullable="false" MaxLength="500" />
+    <Property Name="InsertedDate" Type="datetime" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="Parser" Type="varchar" Nullable="true" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Sections">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="InsertedDate" Type="datetime" Nullable="false" />
+    <Property Name="ImageUrl" Type="nvarchar" Nullable="true" MaxLength="500" />
+    <Property Name="ThumbnailUrl" Type="nvarchar" Nullable="true" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="Subscriptions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="InsertedDate" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Permisos">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Url" Type="nvarchar(max)" Nullable="false" />
     <Property Name="SeccionId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Providers">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="Url" Type="nvarchar" Nullable="false" MaxLength="500" />
-    <Property Name="InsertedDate" Type="datetime" Nullable="false" />
-    <Property Name="Active" Type="bit" Nullable="false" />
-    <Property Name="Parser" Type="varchar" MaxLength="100" />
+    <Property Name="SeccioneId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Roles">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Activo" Type="bit" Nullable="false" />
   </EntityType>
@@ -193,19 +187,31 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Orden" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="Sections">
+  <EntityType Name="Usuarios">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="InsertedDate" Type="datetime" Nullable="false" />
-    <Property Name="ImageUrl" Type="nvarchar" MaxLength="500" />
-    <Property Name="ThumbnailUrl" Type="nvarchar" MaxLength="500" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Activo" Type="bit" Nullable="false" />
+    <Property Name="Tipo" Type="int" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Images">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NewsId" Type="int" Nullable="false" />
+    <Property Name="Url" Type="varchar" Nullable="false" MaxLength="500" />
+    <Property Name="Thumbnail" Type="varchar" Nullable="true" MaxLength="500" />
+    <Property Name="Hight" Type="varchar" Nullable="true" MaxLength="500" />
   </EntityType>
   <EntityType Name="SectionsSubscriptions">
     <Key>
@@ -215,34 +221,13 @@
     <Property Name="Sections_Id" Type="int" Nullable="false" />
     <Property Name="Subscriptions_Id" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="Subscriptions">
+  <EntityType Name="PermisoRole">
     <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="Active" Type="bit" Nullable="false" />
-    <Property Name="InsertedDate" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
-  <EntityType Name="UsuarioRole">
-    <Key>
+      <PropertyRef Name="Permisos_Id" />
       <PropertyRef Name="Roles_Id" />
-      <PropertyRef Name="Usuarios_Id" />
     </Key>
+    <Property Name="Permisos_Id" Type="int" Nullable="false" />
     <Property Name="Roles_Id" Type="int" Nullable="false" />
-    <Property Name="Usuarios_Id" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Usuarios">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="UserName" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Activo" Type="bit" Nullable="false" />
-    <Property Name="Tipo" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="FK_AdministratorsAdministratorContact">
     <End Role="Administrators" Type="ToyaldiaModel.Store.Administrators" Multiplicity="1" />
@@ -256,51 +241,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="fk_images_news">
-    <End Role="News" Type="ToyaldiaModel.Store.News" Multiplicity="1" />
-    <End Role="Images" Type="ToyaldiaModel.Store.Images" Multiplicity="*" />
+  <Association Name="FK_SubscriptionsEmails">
+    <End Role="Subscriptions" Type="ToyaldiaModel.Store.Subscriptions" Multiplicity="1" />
+    <End Role="Emails" Type="ToyaldiaModel.Store.Emails" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="News">
+      <Principal Role="Subscriptions">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Images">
-        <PropertyRef Name="NewsId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_PermisoRole_Permiso">
-    <End Role="Permisos" Type="ToyaldiaModel.Store.Permisos" Multiplicity="1" />
-    <End Role="PermisoRole" Type="ToyaldiaModel.Store.PermisoRole" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Permisos">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="PermisoRole">
-        <PropertyRef Name="Permisos_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_PermisoRole_Role">
-    <End Role="Roles" Type="ToyaldiaModel.Store.Roles" Multiplicity="1" />
-    <End Role="PermisoRole" Type="ToyaldiaModel.Store.PermisoRole" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Roles">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="PermisoRole">
-        <PropertyRef Name="Roles_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_PermisoSeccion">
-    <End Role="Secciones" Type="ToyaldiaModel.Store.Secciones" Multiplicity="1" />
-    <End Role="Permisos" Type="ToyaldiaModel.Store.Permisos" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Secciones">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Permisos">
-        <PropertyRef Name="SeccionId" />
+      <Dependent Role="Emails">
+        <PropertyRef Name="SubscriptionsId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -316,30 +265,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_ProvidersNews">
-    <End Role="Providers" Type="ToyaldiaModel.Store.Providers" Multiplicity="1" />
-    <End Role="News" Type="ToyaldiaModel.Store.News" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Providers">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="News">
-        <PropertyRef Name="ProvidersId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_SeccionPermiso">
-    <End Role="Secciones" Type="ToyaldiaModel.Store.Secciones" Multiplicity="1" />
-    <End Role="Permisos" Type="ToyaldiaModel.Store.Permisos" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Secciones">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Permisos">
-        <PropertyRef Name="SeccionId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_SectionsFeeds">
     <End Role="Sections" Type="ToyaldiaModel.Store.Sections" Multiplicity="1" />
     <End Role="Feeds" Type="ToyaldiaModel.Store.Feeds" Multiplicity="*" />
@@ -352,6 +277,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_ProvidersNews">
+    <End Role="Providers" Type="ToyaldiaModel.Store.Providers" Multiplicity="1" />
+    <End Role="News" Type="ToyaldiaModel.Store.News" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Providers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="News">
+        <PropertyRef Name="ProvidersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_SectionsNews">
     <End Role="Sections" Type="ToyaldiaModel.Store.Sections" Multiplicity="1" />
     <End Role="News" Type="ToyaldiaModel.Store.News" Multiplicity="*" />
@@ -361,6 +298,42 @@
       </Principal>
       <Dependent Role="News">
         <PropertyRef Name="SectionsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_images_news">
+    <End Role="News" Type="ToyaldiaModel.Store.News" Multiplicity="1" />
+    <End Role="Image" Type="ToyaldiaModel.Store.Images" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="News">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Image">
+        <PropertyRef Name="NewsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RoleUsuario">
+    <End Role="Role" Type="ToyaldiaModel.Store.Roles" Multiplicity="1" />
+    <End Role="Usuario" Type="ToyaldiaModel.Store.Usuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SeccionePermiso">
+    <End Role="Seccione" Type="ToyaldiaModel.Store.Secciones" Multiplicity="1" />
+    <End Role="Permiso" Type="ToyaldiaModel.Store.Permisos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Seccione">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Permiso">
+        <PropertyRef Name="SeccioneId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -377,8 +350,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_SectionsSubscriptions_Subscriptions">
-    <End Role="Subscriptions" Type="ToyaldiaModel.Store.Subscriptions" Multiplicity="1" />
     <End Role="SectionsSubscriptions" Type="ToyaldiaModel.Store.SectionsSubscriptions" Multiplicity="*" />
+    <End Role="Subscriptions" Type="ToyaldiaModel.Store.Subscriptions" Multiplicity="1" />
     <ReferentialConstraint>
       <Principal Role="Subscriptions">
         <PropertyRef Name="Id" />
@@ -388,56 +361,28 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_SubscriptionsEmails">
-    <End Role="Subscriptions" Type="ToyaldiaModel.Store.Subscriptions" Multiplicity="1" />
-    <End Role="Emails" Type="ToyaldiaModel.Store.Emails" Multiplicity="*" />
+  <Association Name="FK_PermisoRole_Permiso">
+    <End Role="Permiso" Type="ToyaldiaModel.Store.Permisos" Multiplicity="1" />
+    <End Role="PermisoRole" Type="ToyaldiaModel.Store.PermisoRole" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Subscriptions">
+      <Principal Role="Permiso">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Emails">
-        <PropertyRef Name="SubscriptionsId" />
+      <Dependent Role="PermisoRole">
+        <PropertyRef Name="Permisos_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_UsuarioRole_Role">
-    <End Role="Roles" Type="ToyaldiaModel.Store.Roles" Multiplicity="1" />
-    <End Role="UsuarioRole" Type="ToyaldiaModel.Store.UsuarioRole" Multiplicity="*" />
+  <Association Name="FK_PermisoRole_Role">
+    <End Role="PermisoRole" Type="ToyaldiaModel.Store.PermisoRole" Multiplicity="*" />
+    <End Role="Role" Type="ToyaldiaModel.Store.Roles" Multiplicity="1" />
     <ReferentialConstraint>
-      <Principal Role="Roles">
+      <Principal Role="Role">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="UsuarioRole">
+      <Dependent Role="PermisoRole">
         <PropertyRef Name="Roles_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_UsuarioRole_Usuario">
-    <End Role="Usuarios" Type="ToyaldiaModel.Store.Usuarios" Multiplicity="1" />
-    <End Role="UsuarioRole" Type="ToyaldiaModel.Store.UsuarioRole" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Usuarios">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="UsuarioRole">
-        <PropertyRef Name="Usuarios_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Function Name="ExistsNews" ReturnType="bit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="Title" Type="varchar" Mode="In" />
-  </Function>
-  <Function Name="GetLastestNews" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="Section" Type="int" Mode="In" />
-  </Function>
-  <Function Name="IsValidLogin" ReturnType="bit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="UserName" Type="varchar" Mode="In" />
-    <Parameter Name="Password" Type="varchar" Mode="In" />
-  </Function>
-  <Function Name="IsValidUser" ReturnType="bit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="UserName" Type="varchar" Mode="In" />
-  </Function>
-  <Function Name="spExistsNews" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="Title" Type="varchar" Mode="In" />
-  </Function>
 </Schema>

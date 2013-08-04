@@ -112,6 +112,7 @@
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="Url" ColumnName="Url" />
           <ScalarProperty Name="SeccionId" ColumnName="SeccionId" />
+          <ScalarProperty Name="SeccioneId" ColumnName="SeccioneId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -142,6 +143,7 @@
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="Activo" ColumnName="Activo" />
           <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -172,15 +174,5 @@
         <ScalarProperty Name="Id" ColumnName="Roles_Id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="UsuarioRole" TypeName="ToyaldiaModel.UsuarioRole" StoreEntitySet="UsuarioRole">
-      <EndProperty Name="Role">
-        <ScalarProperty Name="Id" ColumnName="Roles_Id" />
-      </EndProperty>
-      <EndProperty Name="Usuario">
-        <ScalarProperty Name="Id" ColumnName="Usuarios_Id" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <FunctionImportMapping FunctionImportName="GetLastestNews" FunctionName="ToyaldiaModel.Store.GetLastestNews" />
-    <FunctionImportMapping FunctionImportName="spExistsNews" FunctionName="ToyaldiaModel.Store.spExistsNews" />
   </EntityContainerMapping>
 </Mapping>

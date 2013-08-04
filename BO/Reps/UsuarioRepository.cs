@@ -18,6 +18,5 @@ namespace BO.Reps
         {
             return db.Usuarios.FirstOrDefault(x => x.Id == id);
         }
-		
 	}
 }

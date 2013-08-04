@@ -27,6 +27,13 @@ namespace BO.Reps
             return db.News.Where(n => n.SectionsId == SectionId && n.PubDate > lastDate);
         }
 
+        public IEnumerable<News> GetLastestNews()
+        {
+            DateTime lastDate = DateTime.Now.AddDays(-2);
+
+            return db.News.Where(n => n.PubDate > lastDate);
+        }
+
         public bool ExistsNews(string title)
         {
             DateTime datetime = DateTime.Now.AddDays(-2);

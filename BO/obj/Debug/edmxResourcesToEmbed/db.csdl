@@ -42,21 +42,9 @@
     <EntitySet Name="Roles" EntityType="ToyaldiaModel.Role" />
     <EntitySet Name="Secciones" EntityType="ToyaldiaModel.Seccione" />
     <EntitySet Name="Usuarios" EntityType="ToyaldiaModel.Usuario" />
-    <AssociationSet Name="FK_PermisoSeccion" Association="ToyaldiaModel.FK_PermisoSeccion">
-      <End Role="Seccione" EntitySet="Secciones" />
-      <End Role="Permiso" EntitySet="Permisos" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SeccionPermiso" Association="ToyaldiaModel.FK_SeccionPermiso">
-      <End Role="Seccione" EntitySet="Secciones" />
-      <End Role="Permiso" EntitySet="Permisos" />
-    </AssociationSet>
     <AssociationSet Name="PermisoRole" Association="ToyaldiaModel.PermisoRole">
-      <End Role="Permiso" EntitySet="Permisos" />
-      <End Role="Role" EntitySet="Roles" />
-    </AssociationSet>
-    <AssociationSet Name="UsuarioRole" Association="ToyaldiaModel.UsuarioRole">
-      <End Role="Role" EntitySet="Roles" />
-      <End Role="Usuario" EntitySet="Usuarios" />
+      <End EntitySet="Permisos" Role="Permiso" />
+      <End EntitySet="Roles" Role="Role" />
     </AssociationSet>
     <EntitySet Name="Images" EntityType="ToyaldiaModel.Image" />
     <AssociationSet Name="fk_images_news" Association="ToyaldiaModel.fk_images_news">
@@ -69,6 +57,14 @@
     <FunctionImport Name="spExistsNews" ReturnType="Collection(Int32)">
       <Parameter Name="Title" Mode="In" Type="String" />
     </FunctionImport>
+    <AssociationSet Name="RoleUsuario" Association="ToyaldiaModel.RoleUsuario">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="Usuario" EntitySet="Usuarios" />
+    </AssociationSet>
+    <AssociationSet Name="SeccionePermiso" Association="ToyaldiaModel.SeccionePermiso">
+      <End Role="Seccione" EntitySet="Secciones" />
+      <End Role="Permiso" EntitySet="Permisos" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="AdministratorContact">
     <Key>
@@ -264,9 +260,9 @@
     <Property Type="String" Name="Nombre" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="Url" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Type="Int32" Name="SeccionId" Nullable="false" />
-    <NavigationProperty Name="Seccione" Relationship="ToyaldiaModel.FK_PermisoSeccion" FromRole="Permiso" ToRole="Seccione" />
-    <NavigationProperty Name="Seccione1" Relationship="ToyaldiaModel.FK_SeccionPermiso" FromRole="Permiso" ToRole="Seccione" />
     <NavigationProperty Name="Roles" Relationship="ToyaldiaModel.PermisoRole" FromRole="Permiso" ToRole="Role" />
+    <NavigationProperty Name="Seccione" Relationship="ToyaldiaModel.SeccionePermiso" FromRole="Permiso" ToRole="Seccione" />
+    <Property Type="Int32" Name="SeccioneId" Nullable="false" />
   </EntityType>
   <EntityType Name="Role">
     <Key>
@@ -276,7 +272,7 @@
     <Property Type="String" Name="Nombre" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Type="Boolean" Name="Activo" Nullable="false" />
     <NavigationProperty Name="Permisos" Relationship="ToyaldiaModel.PermisoRole" FromRole="Role" ToRole="Permiso" />
-    <NavigationProperty Name="Usuarios" Relationship="ToyaldiaModel.UsuarioRole" FromRole="Role" ToRole="Usuario" />
+    <NavigationProperty Name="Usuarios" Relationship="ToyaldiaModel.RoleUsuario" FromRole="Role" ToRole="Usuario" />
   </EntityType>
   <EntityType Name="Seccione">
     <Key>
@@ -285,8 +281,7 @@
     <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Type="String" Name="Nombre" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Type="Int32" Name="Orden" Nullable="false" />
-    <NavigationProperty Name="Permisos" Relationship="ToyaldiaModel.FK_PermisoSeccion" FromRole="Seccione" ToRole="Permiso" />
-    <NavigationProperty Name="Permisos1" Relationship="ToyaldiaModel.FK_SeccionPermiso" FromRole="Seccione" ToRole="Permiso" />
+    <NavigationProperty Name="Permisos" Relationship="ToyaldiaModel.SeccionePermiso" FromRole="Seccione" ToRole="Permiso" />
   </EntityType>
   <EntityType Name="Usuario">
     <Key>
@@ -298,39 +293,12 @@
     <Property Type="String" Name="Email" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Type="Boolean" Name="Activo" Nullable="false" />
     <Property Type="Int32" Name="Tipo" Nullable="false" />
-    <NavigationProperty Name="Roles" Relationship="ToyaldiaModel.UsuarioRole" FromRole="Usuario" ToRole="Role" />
+    <NavigationProperty Name="Role" Relationship="ToyaldiaModel.RoleUsuario" FromRole="Usuario" ToRole="Role" />
+    <Property Type="Int32" Name="RoleId" Nullable="false" />
   </EntityType>
-  <Association Name="FK_PermisoSeccion">
-    <End Type="ToyaldiaModel.Seccione" Role="Seccione" Multiplicity="1" />
-    <End Type="ToyaldiaModel.Permiso" Role="Permiso" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Seccione">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Permiso">
-        <PropertyRef Name="SeccionId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_SeccionPermiso">
-    <End Type="ToyaldiaModel.Seccione" Role="Seccione" Multiplicity="1" />
-    <End Type="ToyaldiaModel.Permiso" Role="Permiso" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Seccione">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Permiso">
-        <PropertyRef Name="SeccionId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="PermisoRole">
-    <End Type="ToyaldiaModel.Permiso" Role="Permiso" Multiplicity="*" />
-    <End Type="ToyaldiaModel.Role" Role="Role" Multiplicity="*" />
-  </Association>
-  <Association Name="UsuarioRole">
-    <End Type="ToyaldiaModel.Role" Role="Role" Multiplicity="*" />
-    <End Type="ToyaldiaModel.Usuario" Role="Usuario" Multiplicity="*" />
+    <End Type="ToyaldiaModel.Permiso" Multiplicity="*" Role="Permiso" />
+    <End Type="ToyaldiaModel.Role" Multiplicity="*" Role="Role" />
   </Association>
   <EntityType Name="Image">
     <Key>
@@ -399,4 +367,28 @@
     <Property Type="String" Name="Description" Nullable="false" />
     <Property Type="String" Name="Source" Nullable="false" MaxLength="500" />
   </ComplexType>
+  <Association Name="RoleUsuario">
+    <End Type="ToyaldiaModel.Role" Role="Role" Multiplicity="1" />
+    <End Type="ToyaldiaModel.Usuario" Role="Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SeccionePermiso">
+    <End Type="ToyaldiaModel.Seccione" Role="Seccione" Multiplicity="1" />
+    <End Type="ToyaldiaModel.Permiso" Role="Permiso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Seccione">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Permiso">
+        <PropertyRef Name="SeccioneId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>
