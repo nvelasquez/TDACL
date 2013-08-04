@@ -174,5 +174,16 @@
         <ScalarProperty Name="Id" ColumnName="Roles_Id" />
       </EndProperty>
     </AssociationSetMapping>
+<<<<<<< HEAD
+=======
+    <AssociationSetMapping Name="UsuarioRole" TypeName="ToyaldiaModel.UsuarioRole" StoreEntitySet="UsuarioRole">
+      <EndProperty Name="Role">
+        <ScalarProperty Name="Id" ColumnName="Roles_Id" />
+      </EndProperty>
+      <EndProperty Name="Usuario">
+        <ScalarProperty Name="Id" ColumnName="Usuarios_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+>>>>>>> a075f9207af30705ec66f5b3b153baa61f15581a
   </EntityContainerMapping>
 </Mapping>

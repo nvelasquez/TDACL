@@ -17,6 +17,10 @@
     <EntitySet Name="Images" EntityType="ToyaldiaModel.Store.Images" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="SectionsSubscriptions" EntityType="ToyaldiaModel.Store.SectionsSubscriptions" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="PermisoRole" EntityType="ToyaldiaModel.Store.PermisoRole" store:Type="Tables" Schema="dbo" />
+<<<<<<< HEAD
+=======
+    <EntitySet Name="UsuarioRole" EntityType="ToyaldiaModel.Store.UsuarioRole" store:Type="Tables" Schema="dbo" />
+>>>>>>> a075f9207af30705ec66f5b3b153baa61f15581a
     <AssociationSet Name="FK_AdministratorsAdministratorContact" Association="ToyaldiaModel.Store.FK_AdministratorsAdministratorContact">
       <End Role="Administrators" EntitySet="Administrators" />
       <End Role="AdministratorContacts" EntitySet="AdministratorContacts" />
@@ -49,6 +53,17 @@
       <End Role="Subscriptions" EntitySet="Subscriptions" />
       <End Role="SectionsSubscriptions" EntitySet="SectionsSubscriptions" />
     </AssociationSet>
+<<<<<<< HEAD
+=======
+    <AssociationSet Name="FK_PermisoSeccion" Association="ToyaldiaModel.Store.FK_PermisoSeccion">
+      <End Role="Seccione" EntitySet="Secciones" />
+      <End Role="Permiso" EntitySet="Permisos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SeccionPermiso" Association="ToyaldiaModel.Store.FK_SeccionPermiso">
+      <End Role="Seccione" EntitySet="Secciones" />
+      <End Role="Permiso" EntitySet="Permisos" />
+    </AssociationSet>
+>>>>>>> a075f9207af30705ec66f5b3b153baa61f15581a
     <AssociationSet Name="FK_PermisoRole_Permiso" Association="ToyaldiaModel.Store.FK_PermisoRole_Permiso">
       <End Role="Permiso" EntitySet="Permisos" />
       <End Role="PermisoRole" EntitySet="PermisoRole" />
@@ -57,6 +72,7 @@
       <End Role="Role" EntitySet="Roles" />
       <End Role="PermisoRole" EntitySet="PermisoRole" />
     </AssociationSet>
+<<<<<<< HEAD
     <AssociationSet Name="fk_images_news" Association="ToyaldiaModel.Store.fk_images_news">
       <End Role="News" EntitySet="News" />
       <End Role="Image" EntitySet="Images" />
@@ -68,6 +84,19 @@
     <AssociationSet Name="SeccionePermiso" Association="ToyaldiaModel.Store.SeccionePermiso">
       <End Role="Seccione" EntitySet="Secciones" />
       <End Role="Permiso" EntitySet="Permisos" />
+=======
+    <AssociationSet Name="FK_UsuarioRole_Role" Association="ToyaldiaModel.Store.FK_UsuarioRole_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="UsuarioRole" EntitySet="UsuarioRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsuarioRole_Usuario" Association="ToyaldiaModel.Store.FK_UsuarioRole_Usuario">
+      <End Role="Usuario" EntitySet="Usuarios" />
+      <End Role="UsuarioRole" EntitySet="UsuarioRole" />
+>>>>>>> a075f9207af30705ec66f5b3b153baa61f15581a
+    </AssociationSet>
+    <AssociationSet Name="fk_images_news" Association="ToyaldiaModel.Store.fk_images_news">
+      <End Role="News" EntitySet="News" />
+      <End Role="Image" EntitySet="Images" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="AdministratorContacts">
@@ -173,7 +202,10 @@
     <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Url" Type="nvarchar(max)" Nullable="false" />
     <Property Name="SeccionId" Type="int" Nullable="false" />
+<<<<<<< HEAD
     <Property Name="SeccioneId" Type="int" Nullable="false" />
+=======
+>>>>>>> a075f9207af30705ec66f5b3b153baa61f15581a
   </EntityType>
   <EntityType Name="Roles">
     <Key>
@@ -201,7 +233,10 @@
     <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Activo" Type="bit" Nullable="false" />
     <Property Name="Tipo" Type="int" Nullable="false" />
+<<<<<<< HEAD
     <Property Name="RoleId" Type="int" Nullable="false" />
+=======
+>>>>>>> a075f9207af30705ec66f5b3b153baa61f15581a
   </EntityType>
   <EntityType Name="Images">
     <Key>
@@ -222,12 +257,27 @@
     <Property Name="Subscriptions_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="PermisoRole">
+<<<<<<< HEAD
+=======
     <Key>
       <PropertyRef Name="Permisos_Id" />
       <PropertyRef Name="Roles_Id" />
     </Key>
     <Property Name="Permisos_Id" Type="int" Nullable="false" />
     <Property Name="Roles_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UsuarioRole">
+>>>>>>> a075f9207af30705ec66f5b3b153baa61f15581a
+    <Key>
+      <PropertyRef Name="Permisos_Id" />
+      <PropertyRef Name="Roles_Id" />
+    </Key>
+    <Property Name="Permisos_Id" Type="int" Nullable="false" />
+    <Property Name="Roles_Id" Type="int" Nullable="false" />
+<<<<<<< HEAD
+=======
+    <Property Name="Usuarios_Id" Type="int" Nullable="false" />
+>>>>>>> a075f9207af30705ec66f5b3b153baa61f15581a
   </EntityType>
   <Association Name="FK_AdministratorsAdministratorContact">
     <End Role="Administrators" Type="ToyaldiaModel.Store.Administrators" Multiplicity="1" />
@@ -301,6 +351,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+<<<<<<< HEAD
   <Association Name="fk_images_news">
     <End Role="News" Type="ToyaldiaModel.Store.News" Multiplicity="1" />
     <End Role="Image" Type="ToyaldiaModel.Store.Images" Multiplicity="*" />
@@ -334,6 +385,41 @@
       </Principal>
       <Dependent Role="Permiso">
         <PropertyRef Name="SeccioneId" />
+=======
+  <Association Name="FK_PermisoSeccion">
+    <End Role="Seccione" Type="ToyaldiaModel.Store.Secciones" Multiplicity="1" />
+    <End Role="Permiso" Type="ToyaldiaModel.Store.Permisos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Seccione">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Permiso">
+        <PropertyRef Name="SeccionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SeccionPermiso">
+    <End Role="Seccione" Type="ToyaldiaModel.Store.Secciones" Multiplicity="1" />
+    <End Role="Permiso" Type="ToyaldiaModel.Store.Permisos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Seccione">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Permiso">
+        <PropertyRef Name="SeccionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_images_news">
+    <End Role="News" Type="ToyaldiaModel.Store.News" Multiplicity="1" />
+    <End Role="Image" Type="ToyaldiaModel.Store.Images" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="News">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Image">
+        <PropertyRef Name="NewsId" />
+>>>>>>> a075f9207af30705ec66f5b3b153baa61f15581a
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -370,6 +456,14 @@
       </Principal>
       <Dependent Role="PermisoRole">
         <PropertyRef Name="Permisos_Id" />
+<<<<<<< HEAD
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PermisoRole_Role">
+    <End Role="PermisoRole" Type="ToyaldiaModel.Store.PermisoRole" Multiplicity="*" />
+    <End Role="Role" Type="ToyaldiaModel.Store.Roles" Multiplicity="1" />
+=======
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -385,4 +479,32 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_UsuarioRole_Role">
+    <End Role="Role" Type="ToyaldiaModel.Store.Roles" Multiplicity="1" />
+    <End Role="UsuarioRole" Type="ToyaldiaModel.Store.UsuarioRole" Multiplicity="*" />
+>>>>>>> a075f9207af30705ec66f5b3b153baa61f15581a
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PermisoRole">
+        <PropertyRef Name="Roles_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+<<<<<<< HEAD
+=======
+  <Association Name="FK_UsuarioRole_Usuario">
+    <End Role="UsuarioRole" Type="ToyaldiaModel.Store.UsuarioRole" Multiplicity="*" />
+    <End Role="Usuario" Type="ToyaldiaModel.Store.Usuarios" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UsuarioRole">
+        <PropertyRef Name="Usuarios_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+>>>>>>> a075f9207af30705ec66f5b3b153baa61f15581a
 </Schema>
